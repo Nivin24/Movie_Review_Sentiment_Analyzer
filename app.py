@@ -14,20 +14,26 @@ load_dotenv()
 # --- 1. NLTK Data Download (CLOUD SAFE) ---
 @st.cache_resource
 def download_nltk_data():
-    """Downloads and configures NLTK data for cloud environments."""
+    """Downloads and configures essential NLTK data (safe for cloud and local)."""
     nltk_data_dir = '/tmp/nltk_data'
     os.makedirs(nltk_data_dir, exist_ok=True)
     nltk.data.path.append(nltk_data_dir)
 
     try:
+        # Core resources
         nltk.download('punkt', download_dir=nltk_data_dir, quiet=True)
         nltk.download('punkt_tab', download_dir=nltk_data_dir, quiet=True)
         nltk.download('stopwords', download_dir=nltk_data_dir, quiet=True)
         nltk.download('wordnet', download_dir=nltk_data_dir, quiet=True)
+        nltk.download('omw-1.4', download_dir=nltk_data_dir, quiet=True)
+        
         print("✅ NLTK data downloaded and configured successfully.")
+        print("NLTK Data Path:", nltk.data.path)
+        
     except Exception as e:
-        st.error(f"❌ Error downloading NLTK data: {e}")
+        print(f"❌ Error downloading NLTK data: {e}")
 
+# Run setup
 download_nltk_data()
 
 # --- 2. File Download Logic (Google Drive) ---
