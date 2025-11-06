@@ -4,3 +4,4 @@ pandas
 nltk
 gdown
 python-dotenv
+pickle-mixin
