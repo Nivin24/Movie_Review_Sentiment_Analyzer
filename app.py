@@ -187,3 +187,9 @@ with col2:
         st.info(f"**Review Analyzed:** \n\n{st.session_state['review']}")
     else:
         st.info("Results will appear here after you enter a review and click 'Analyze Sentiment'.")
+        
+if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 8501))
+    # This runs the Streamlit app using the correct port on Render
+    os.system(f"streamlit run app.py --server.port {port} --server.address 0.0.0.0")
